@@ -762,6 +762,7 @@ The "**Create SQL Database Objects.sql**" script creates the following objects:
         - "**temperature**" is a float column that will store the temperature sensor values.
     - The "**dbo.RecentMeasurements**" view is used by the web application to display the 20 most recent messages.
     - The "**dbo.Devices**" view is used by the web application to display a row for each device, along with their latest reading
+    
 
     ![Open SQL Script](images/10150-OpenCreateScript.png)
 
@@ -779,7 +780,7 @@ The "**Create SQL Database Objects.sql**" script creates the following objects:
 
     ![MS SQL Connect](images/CreateSQLDB_3.png)
 
-1. Pates table creation queries and run the queries.
+1. Paste copied queries and run.
 
     ![MS SQL Connect](images/CreateSQLDB_4.png)
 
@@ -953,14 +954,13 @@ Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytic
 
     ![Job Started](images/10400-JobStarted.png)
 
-1. At this point, we should have data being forwarded into our SQL Database.  We can verify that using Visual Studio Code.  In Code, open the "**SQL Database Scripts\Query Measurement Data.sql**" file.  Make sure the file is active by clicking into it, and then execute the entire query by pressing **Ctrl+Shift+E** (If prompted, select your SQL Server connection again).  You should see the results of the three queries show up on the "**Results**" tab.
+1. At this point, we should have data being forwarded into our SQL Database.  We can verify that using Azure Portal **Query Editor (preview)**.  In Code, open the "**SQL Database Scripts\Query Measurement Data.sql**" file and copy the queries. Goto Azure portal, open SQL DB management blaze. 
 
-    > **Note**: You need to be connected to the SQL Server already.  If you aren't, press **Ctrl+Shift+C**, select your SQL Connection and press enter.  Also make sure that your cursor is INSIDE the "**Query Measurement Data.sql**" file in the editor or the **Ctrl+Shift+C** and **Ctrl+Shift+E** do different things (open a command prompt, and open the explorer panel respectively).
-
-    ![SQL Data](images/10410-SQLData.png)
-
-1. Pretty cool!  Our device message data is now getting pushed into our Azure SQL Database. Of course, we also have the "**alerts**" output which can push high temperature messages off to our ***&lt;name&gt;alerts*** event hub, but we'll come back to those in another task.  For now, pat yourself on the back, this task had a lot of steps.
-
+    ![Job Started](images/CreateSQLDB2.png)
+    
+    ![Job Started](images/CreateSQLDB2.1.png)
+    
+    ![Job Started](images/CreateSQLDB3.png)
 ___
 
 <a name="AzureWebApp"></a>
