@@ -629,83 +629,7 @@ ___
 Publishing Temperature Sensor Data to the Azure IoT Hub
 ---
 
-In this task, we'll update the Intel NUC with some packages to help it talk to our Azure IoT Hub, then we'll modify the "**Flow 3**" flow we created earlier to publish the temperature sensor data to our Azure IoT Hub.
-
-1. Open an ssh connection to your Intel NUC using the method desribed previously.  From the prompt, run the following commands:
-
-    > **Note**: ***MAKE SURE YOU ARE RUNNING THESE COMMANDS ON THE INTEL NUC VIA AN SSH SESSION.***
-
-    > **Note**: If you are using PuTTY, you can copy the command below to your computer's clipboard, then right-click on the PuTTY window to paste it into the remote ssh command prompt.  Other ssh clients should offer a similar paste option.
-
-    The commands will not return any result unless there was a problem.  They are simply adding some public key values used by the apt-get package repositories we will be installing from in the coming steps:
-
-    ```text
-    rpm --import http://iotdk.intel.com/misc/iot_pub.key
-    rpm --import http://iotdk.intel.com/misc/iot_pub2.key
-    ```
-
-1. Next, install the `node-red-contrib-os` npm package globally on the NUC.  This package (<a target="_blank" href="https://www.npmjs.com/package/node-red-contrib-os">link</a>) adds some special Node-RED nodes that allow you to get information from the local Operating System (OS) where the Node-RED flow is running.  Things like OS Info, Drive Info, Memory Info, etc.  Install it on the NUC using the following statement:
-
-    You will see a number of "***WARN unmet dependency***" messages appear.  ***You can safely ignore these***.
-
-    ```text
-    npm install node-red-contrib-os -g
-    ```
-
-    ***Keep your ssh connection open, you'll need it later.***
-
-1. Next, we need to add an rpm package repository to the system. In your browser, navigate to your NUC's IP Address and login as root.  Then navigate to the "**Packages"** page, and click the "**Add Repo +**" button.
-
-    ![Add Repo](images/09010-AddRepo.png)
-
-1. In the "**Manage Repositories**" window, in the fields under "**Add New Repository**" enter the following, and click the "**Add Repository**" button:
-
-    > **Note**: The `IoT_Cloud` repo is provided by Intel and includes some packages for working with Azure's IoT services.  Once we add a reference to the repo (which is what we are doing here), we can later install packages from it using apt-get.
-
-    - Name - **IoT_Cloud**
-    - URL - **`http://iotdk.intel.com/repos/iot-cloud/wrlinux7/rcpl13`**
-    - Username - **leave blank**
-    - Password - **leave blank**
-
-    ![Add IoT_Coud Repository](images/09020-AddIoTCloudRepo.png)
-
-1. You will see the following message, indicating that this update may take a few minutes.  And it does, so be patient:
-
-    "***Adding repository IoT_Cloud.  Package list will be updated.  This may take a few minutes...***"
-
-1. Once the update is complete, you should see the following message.  Click on the "Update Repositories" button.  Again, this will take a few mintues to complete:
-
-    ![Update Repositories](images/09030-UpdateRepositories.png)
-
-1. When the button states that the repositories have been updated (this will also take a minute or so to update), you can click on the "X" in the top right corner of the "**Manage Repositories**" window to close it:
-
-    ![Close Manage Repositories Window](images/09040-CloseManageRepositoriesWindow.png)
-
-1. Next, click the "**Add Packages +**" button:
-
-    ![Add Packages](images/09050-AddPackagesButton.png)
-
-1. In the "**Add New Packages**" window, in the search box, type "**cloud-azure**", then click the "**Install**" button next to the "**packagegroup-cloud-azure**" package.  Again, this takes a few minutes so be patient:
-
-    <blockquote>
-      <strong>Note</strong>: You can see what all is installed with the packagegroup-cloud-azure package here: <a target="_blank" href="https://github.com/intel-iot-devkit/meta-iot-cloud/tree/master/recipes-core/packagegroups">link</a>
-       <br/>
-      Basically it is all of the npm packages for the various Azure IoT Hub sdks.  It also includes a Node-RED node for working with Azure IoT Hubs (<a target="_blank" href="https://www.npmjs.com/package/node-red-contrib-azureiothubnode">link</a>).
-    </blockquote>
-
-    ![Install packagegroup-cloud-azure](images/09060-InstallPackageGroupCloudAzure.png)
-
-1. Once the package disappears from the list, you can click on the "X" icon to close the "**Add New Packages**" window.
-
-    ![Close the Add New Packages Window](images/09070-CloseAddNewPackagesWindow.png)
-
-1. ***Back in your ssh connection to the NUC***, run the following command to restart the Node-RED environment on the NUC.  This is necessary because the package that we just installed updated the resources available to Node-RED so it needs to be re-initialized:
-
-    ```text
-    systemctl restart node-red-experience
-    ```
-
-1. Now, ***from your computer*** open the Node-RED development environment in the browser (Remember you can just point your browser to port 1880 on your NUC, eg: `http://your.nucs.ip.address:1880` where `your.nucs.ip.address is` your NUC's IP Address).  If you already had it open, make sure to refresh it.  In the list of nodes on the left, you should see a new "**cloud**" category, and within it the "**azureiothub**" node:
+1. ***from your computer*** open the Node-RED development environment in the browser (Remember you can just point your browser to port 1880 on your NUC, eg: `http://your.nucs.ip.address:1880` where `your.nucs.ip.address is` your NUC's IP Address).  If you already had it open, make sure to refresh it.  In the list of nodes on the left, you should see a new "**cloud**" category, and within it the "**azureiothub**" node:
 
     <blockquote>
       <strong>Note</strong>: if the "<strong>cloud</strong>" category and "<strong>azureiothubnode</strong>" node don't appear, you may need to manually install the "<strong>node-red-control-azureiothubnode</strong>" package on the NUC.  If that is necessary, ssh into the NUC, and from the prompt run the following two commands:<br/>
@@ -724,7 +648,7 @@ In this task, we'll update the Intel NUC with some packages to help it talk to o
 1. Drag the "**azureiothub**" node onto the Node-RED visual editor, connect it to the "**json**" node's output as shown below, configure it as follows, and click "**OK**"
 
     - Name - "**Azure IoT Hub**"
-    - Protocol - "**amqp**"
+    - Protocol - "**HTTP**"
     - Connection String - **Paste in the "IoT Hub Device Connection String" you just copied from "[myresources.txt](./myresources.txt)"**.  Again, make sure it's the connection string with that contains your "**`DeviceId=<name>IntelIoTGateway`**" device id we created earlier.
 
     ![Add azureiothub Node to the Flow](images/09090-AddAzureIoTHubNode.png)
@@ -739,51 +663,6 @@ In this task, we'll update the Intel NUC with some packages to help it talk to o
 
     ![Deploy the Changes](images/09120-DeployChanges.png)
 
-1. Now the that device is publishing messages to the IoT Hub, we want to verify that by reading the messages back.  From the command prompt or terminal window ***on your system***, run the following command to monitor the messages being sent into your Azure IoT Hub the Node-RED flow running on the NUC:
-
-    - You will need to copy the '**IoT Hub "iothubowner" SAS Policy Primary Connection String**' from the "**[myresources.txt](./myresources.txt)**" file.
-
-        > **Note**: Again, you need to pay attention here.  Make sure to copy the '**IoT Hub "iothubowner" SAS Policy Primary Connection String**' value.  It's the one that has "**`SharedAccessKeyName=iothubowner`**" in the connection string. This connection string allows you to connect to your IoT Hub with permissions to manage the hub.  That includes of course the permission to read messages that devices send to the hub.
-
-    - Use the device id you generated in place of the ***&lt;name&gt;IntelIoTGateway*** device id
-
-    ```text
-    iothub-explorer monitor-events <name>IntelIoTGateway --login "<IoT Hub 'iothubowner' SAS Policy Primary Connection String>"
-    ```
-
-    For example:
-
-    ```text
-    iothub-explorer monitor-events mic16IntelIoTGateway --login "HostName=mic16iot.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=MuIeI2Bpp4lm6knbNiXX4J1V+UivTov/ebfIfykWD+g="
-    ```
-
-    And you should see output similar to this:
-
-    ```text
-    Monitoring events from device mic16IntelIoTGateway
-    ==== From: mic16IntelIoTGateway ====
-    {
-    "deviceID": "mic16IntelIoTGateway",
-    "timestamp": "2016-10-10T03:49:48.966Z",
-    "temperature": 36.959999999999994
-    }
-    ====================
-    ==== From: mic16IntelIoTGateway ====
-    {
-    "deviceID": "mic16IntelIoTGateway",
-    "timestamp": "2016-10-10T03:49:59.006Z",
-    "temperature": 37.62
-    }
-    ====================
-    ==== From: mic16IntelIoTGateway ====
-    {
-    "deviceID": "mic16IntelIoTGateway",
-    "timestamp": "2016-10-10T03:50:09.085Z",
-    "temperature": 36.959999999999994
-    }
-    ====================
-    ```
-
 1. Remember that we had the Node-RED flow only getting temperatue values once every 10 seconds (10000ms).  It is recommended that you don't publish too much more frequently during this event.  It just helps to reduce the amount of traffic on the network.
 
 1. If you are feeling adventurous, trade iothubowner connection strings and device IDs with a neighbor in the lab and verify that you can monitor each other's devices.  For example:
@@ -793,8 +672,6 @@ In this task, we'll update the Intel NUC with some packages to help it talk to o
     ```
 
 1. One last comment, we are using the "**iothubowner**" connection string to monitor the events.  You could actually use a less privileged policy, like the "**service**" sas policy  we copied the connection string for earlier.  Go ahead and try monitoring events with the **IoT Hub "service" SAS Policy Primary Connection String** policy connection string (the one with "**`SharedAccessKeyName=service`**" in it) you pasted into the [myresources.txt](./myresources.txt) file.  It should work just fine because that SAS policy has permissions to read messages from the IoT Hub and that is all the permissions that `iothub-explorer monitor-events` needs.
-
-1. To stop monitoring events, press **Ctrl-C** at the command prompt and confirm exiting the script.
 
 ___
 
@@ -845,7 +722,7 @@ We'll start out creating the ***&lt;name&gt;sql*** Azure SQL Server, and the ***
 
 1. Click "**Pricing tier**", then find and select the "**B Basic**" pricing tier, and click the "**Select**" button to select it.
 
-    ![Basic Pricing Tier](images/10040-SQLDBPricingTier.png)
+    ![Basic Pricing Tier](images/CreateSQLDB_1.png)
 
 1. Finally, we can create the new Azure SQL Database and Server.  Ensure that the "**Pin to dashboard**" checkbox is **checked**, and click the "**Create**" button to create them.
 
@@ -873,46 +750,11 @@ We'll start out creating the ***&lt;name&gt;sql*** Azure SQL Server, and the ***
 
     ![Document SQL](images/10085-DocumentSQL.png)
 
-1. Now that we have the database created, we need to create the database objects inside it.  To do that, we'll use Visual Studio Code, and the "**mssql**" extension.  Ensure "**Visual Studio Code**" is open to the "**HOLs/**" as instructed previously.
-
-    ![HOLs Folder Open in VS Code](images/10090-HOLsFolderInCode.png)
-
-1. Then click the icon to open the "**Extensions**" panel, and in the search box at the top type "**mssql**", and in the search results, click the "**Install**" button for the "**mssql**" extension.
-
-    > **Note**: Extensions provide a powerful way to expand the capabilities of Visual Studio Code.  There is a rich ecosystem of extensions developed by Microsoft as well as a worldwide community of developers that you can use in "**Visual Studio Code**".  The "**mssql**" extension we are installing here allows you to connect to your "**Azure SQL Database**" from with "**Visual Studio Code**" and execute SQL statements.
-
-    ![Install the mssql Extension](images/10100-InstallVsCodeMssql.png)
-
-1. Once installed, click the "**Reload**" button to enable the extension, and when prompted click "**Reload Window**" to allow VS Code to restart:
-
-    ![Enable Extension](images/10110-EnableExtension.png)
-
-    ![Confirm Restart](images/10120-ConfirmVSCodeRestart.png)
-
-1. Next, we need to tell the **mssql** extension how to connect to our Azure SQL Server and Database.  To do so, from the menu bar, select "**File**" | "**Preferences**" | "**Settings**"
-
-    ![Open Workspace Settings](images/10130-OpenWorkspaceSettings.png)
-
-1. Then, in the **settings.json** file, click the "**Workspace Settings**" header.  Locate the connection properties for the SQL Server connection in the file:
-
-    ![Connection Properties](images/10140-SQLConnectionProperties.png)
-
-    And replace them with the appropriate values from your "**[myresources.txt](./myresources.txt)**" file.  For example:
-
-    ![Completed SQL Connection Properties](images/10145-CompletedSQLConnectionProperties.png)
-
-    Save and close the **settings.json** file when you are done.
-
-1. Click on the icon for the "**Explorer**" panel, select the "**SQL Database Scripts\Create SQL Database Objects.sql**" file.  If this is the first "**.sql**" file you have opened since installing the "**mssql**" extension, you may see some the "**OUTPUT**" panel appear to show the output of the sql tools initialization.  You may also be prompted to view the release notes, if so you can just click "**Close**":
+1. Click on the icon for the "**Explorer**" panel, select the "**SQL Database Scripts\Create SQL Database Objects.sql**" file.  Copy **all** queries. 
 
     ![SQL Tools Initialization](images/10147-SQLToolsInitialization.png)
 
-1. On Windows, you may geta  firewall prompt.  Make sure to confirm the firewall prompt, and to enable it on all network types:
-
-    ![Windows Firewall Prompt](images/10148-FirewallPrompt.png)
-
-1. The "**Create SQL Database Objects.sql**" script creates the following objects:
-
+The "**Create SQL Database Objects.sql**" script creates the following objects:
     - The "**dbo.Measurement**" table.  This table is structured to match the data being sent by the Node-RED flow Intel NUC.  It has the following columns:
         - "**MeasurementID**" is a dynamically generated ID for each row in the database.
         - "**deviceID**" is a nvarchar field that will store the device id sent by the device.
@@ -923,25 +765,23 @@ We'll start out creating the ***&lt;name&gt;sql*** Azure SQL Server, and the ***
 
     ![Open SQL Script](images/10150-OpenCreateScript.png)
 
-1. Make sure the "**Create SQL Database Objects.sql**" file is the currently active file in VS Code, then press the "**F1**" key (or **Ctrl+Shift+P**) to open the "**Command Palette**", and in the box, type "**&gt;MS SQL: Connect**" (don't forget the **&gt;**) and press "**Enter**" (Note you could also have used the **Ctrl-Shift-C** keyboard shortcut while the SQL script file was active).
+1. Goto **<a target="_blank" href="https://portal.azure.com/">Azure Portal</a>**, and select SQL DB management blaze.  
 
-    ![MS SQL Connect](images/10155-MSSQLConnect.png)
+1. Select **Tool** at the top.
 
-    ![Select Connection](images/10160-SelectConnection.png)
+    ![MS SQL Connect](images/CreateSQLDB_2.png)
 
-1. If you receive a connection error, verify the entries in the settings.json file, and also ensure that you created the firewall rule on the server to allow all connections.
+1. Select **Query editor (preview)**.
 
-1. Once you have connected successfully, the server name will show up in the VS Code status bar:
+    ![MS SQL Connect](images/CreateSQLDB_2.1.png)
 
-    ![Successful Connection](images/10180-SuccessfulConnection.png)
+1. Login using SQL Server authentication type.
 
-1. Finally, again ensure that the "**Create SQL Database Objects.sql**" file is the active file in VS Code.  Press "**F1**" or "**Ctrl+Shift+P**" to open the "**Command Palette**" and enter "**>MSSQL: Run T-SQL query**" to execute the code in the current file (You can also just press "**Ctrl-Shift-E**" to execute the code in the currently active SQL script).
+    ![MS SQL Connect](images/CreateSQLDB_3.png)
 
-    ![Run the SQL Script](images/10190-RunSQLScript.png)
+1. Pates table creation queries and run the queries.
 
-1. The "**Results: Create SQL Database Objects.sql**" tab will open, display the results of the script exectution.  You can close the "**Results: Create SQL Database Objects.sql**" and "**Create SQL Database Objects.sql**" tabs when you are done.
-
-    ![SQL Results](images/10210-SQLResults.png)
+    ![MS SQL Connect](images/CreateSQLDB_4.png)
 
 ### Create the Event Hub ###
 
