@@ -956,11 +956,11 @@ Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytic
 
 1. At this point, we should have data being forwarded into our SQL Database.  We can verify that using Azure Portal **Query Editor (preview)**.  In Code, open the "**SQL Database Scripts\Query Measurement Data.sql**" file and copy the queries. Goto Azure portal, open SQL DB management blaze. 
 
-    ![Job Started](images/CreateSQLDB2.png)
+    ![Job Started](images/CreateSQLDB_2.png)
     
-    ![Job Started](images/CreateSQLDB2.1.png)
+    ![Job Started](images/CreateSQLDB_2.1.png)
     
-    ![Job Started](images/CreateSQLDB3.png)
+    ![Job Started](images/CreateSQLDB_3.png)
 ___
 
 <a name="AzureWebApp"></a>
