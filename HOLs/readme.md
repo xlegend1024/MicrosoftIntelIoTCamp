@@ -618,7 +618,7 @@ There is a graphical tool for Windows called "**Device Explorer**".  We won't do
 
 1. If you click the name of the device you can see the detail information such as connection strings.
 
-    ![Add Device Identity from portal](CreateIoTDeviceID/iotdevid_4.png)
+    ![Add Device Identity from portal](CreateIoTDeviceID/iotdevid_5.png)
 
 1. Copy the connection string for the new device from the command output, and document it along with your device id in the "**[myresources.txt](./myresources.txt)**" file:
 
