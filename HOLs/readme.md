@@ -35,7 +35,6 @@ Tasks
 
 1. [Getting Started with Grove IoT Commercial Developer Kit](#GettingStartedWithGrove)
 1. [Intel NUC Developer Hub Overview](#IntelNucHubOverview)
-1. [Connecting to your Gateway using SSH](#ConnectingWithSSH)
 1. [Blinking an LED with Node-RED](#Blinky)
 1. [Reading the Temperature Sensor](#ReadingTemperatures)
 1. [Planning your Azure Resources](#PlanningAzure)
