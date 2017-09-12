@@ -668,60 +668,6 @@ The "**Create SQL Database Objects.sql**" script creates the following objects:
 
     ![MS SQL Connect](images/CreateSQLDB_4.png)
 
-### Create the Event Hub ###
-
-Next up is the ***&lt;name&gt;alerts*** Event Hub that the ***&lt;name&gt;job*** Stream Analytics Job will forward messages with high temperature readings off to.
-
-1. With your browser open to the **<a target="_blank" href="https://portal.azure.com/">Azure Portal</a>** (<a target="_blank" href="https://portal.azure.com/">https://portal.azure.com</a>), close any blades that may be left open from previous steps.
-
-1. Click "**+ New**" | "**Internet of Things**" | "**Event Hubs**"
-
-    > **Note**: the name is a bit misleading.  Before we can create an Event Hub, we need to create the "**Service bus namespace**" that will host it.  We are actually choosing to create an Event Hubs compatible Service Bus Namespace.
-
-    ![New Event Hub](images/10220-NewEventHub.png)
-
-1. In the "**Create namespace**" blade that opens, complete the properties as follows, then click the "**Create**" button to create the Service Bus Namespace that will hold our Event Hub:
-
-    - Name - ***&lt;name&gt;ns***
-    - Pricing tier - Select the "**Standard**" tier
-    - Subscription - **Chose the same subscription used for the previous resources**
-    - Resource group - Choose "**Use existing**" and select the ***&lt;name&gt;group*** resource group created previously
-    - Location - **Use the same location as the previous resources**
-    - Pin to dashboard - **Checked**
-
-    ![Create Namespace](images/10230-CreateNamespace.png)
-
-1. Within a few minutes, the namespace should be provisioned, with its property blade opened in the portal.  Click the "**+Event Hub**" button along the top to create the actual event hub:
-
-    ![Create Event Hub](images/10240-CreateEventHub.png)
-
-1. In the "**Create Event Hub**" blade complete the properties as follows, then click the "**Create**" button to create the event hub.
-
-    - Name - ***&lt;name&gt;alerts***
-    - Partition Count - **2**
-    - Message Retention - **1**
-    - Archive - **Off**
-
-    ![Create New Event Hub](images/10250-NewEventHubProperties.png)
-
-1. Wait until the new event hub is created successfully before continuing:
-
-    ![Event Hub Created](images/10260-EventHubCreated.png)
-
-1. Click the "**Shared access policies**" link along the left hand side, and then click on the "**RootManageSharedAccessKey**"
-
-    ![SAS Policies](images/10262-SASPolicies.png)
-
-1. Then on the "**Policy: RootManageSharedAccessKey**" page, click the button to copy the primary connection string to the clipboard:
-
-    ![Copy the RootManageSharedAccess Key](images/10263-RootManagedSharedAccessKey.png)
-
-1. Take a minute to document your Event Hub Namespace and Event Hub names:
-
-    ![Document Event Hub](images/10265-DocumentEventHub.png)
-
-1. Close all the open blades.
-
 ### Create the Stream Analytics Job ###
 
 Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytics job needs.  We have the ***&lt;name&gt;iot*** Azure IoT Hub as the **input**, and the ***&lt;name&gt;db*** SQL Database and ***&lt;name&gt;alerts*** Event Hub as the **outputs**.  Now we just need to create our Stream Analtyics Job and wire it up!
@@ -779,25 +725,6 @@ Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytic
 1. Watch for the notification under the "**Notifications**" icon (bell) to verify that the connection test to the "**sqldb**" output was successful.  If it wasn't go back and fix what failed.
 
     ![Successful Connection](images/10330-SuccessfulConnectionTest.png)
-
-1. Again, press the "**+ Add**" button at the top of the "**Outputs**" blade, then complete the "**New output**" blade properties as follows and click "**Create**":
-
-    - Name - **alerts** (Again, you really should just use this name and not change it)
-    - Sink - **Event hub**
-    - Subscription - **Use event hub from current subscription**
-    - Service bus namespace - ***&lt;name&gt;ns***
-    - Event hub name - ***&lt;name&gt;alerts***
-    - Event hub policy name - **RootManageSharedAccessKey**
-    - Partition key column - **0**
-    - Event serialization format - **JSON**
-    - Encoding - **UTF-8**
-    - Format - **Line separated**
-
-    ![Alerts Output Properties](images/10340-AlertsOuputProperties.png)
-
-1. Verify that the test connection the **alerts** output was successful:
-
-    ![Alerts Test Success](images/10350-SuccessfulAlertsTest.png)
 
 1. Close the "**Outputs**" blade, and then back on the job blade, click the "**Query**" button.
 
