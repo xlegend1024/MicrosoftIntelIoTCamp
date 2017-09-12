@@ -636,8 +636,8 @@ We'll start out creating the ***&lt;name&gt;sql*** Azure SQL Server, and the ***
 
 1. Click on the icon for the "**Explorer**" panel, select the "**SQL Database Scripts\Create SQL Database Objects.sql**" file.  Copy **all** queries from <a target="_blank" href="https://raw.githubusercontent.com/xlegend1024/MicrosoftIntelIoTCamp/master/HOLs/SQL%20Database%20Scripts/Create%20SQL%20Database%20Objects.sql">here</a>.
 
-    ![SQL Tools Initialization](images/10147-SQLToolsInitialization.png)
-
+    ![SQL Tools Initialization](images/10147-SQLToolsInitialization.png)
+    <blockquote>
 The "**Create SQL Database Objects.sql**" script creates the following objects:
     - The "**dbo.Measurement**" table.  This table is structured to match the data being sent by the Node-RED flow Intel NUC.  It has the following columns:
         - "**MeasurementID**" is a dynamically generated ID for each row in the database.
@@ -645,12 +645,9 @@ The "**Create SQL Database Objects.sql**" script creates the following objects:
         - "**timestamp**" is a datetime field that will store the "**timestamp** generated on the Intel NUC when the message was created.
         - "**temperature**" is a float column that will store the temperature sensor values.
     - The "**dbo.RecentMeasurements**" view is used by the web application to display the 20 most recent messages.
-    - The "**dbo.Devices**" view is used by the web application to display a row for each device, along with their latest reading
-    
-
-    ![Open SQL Script](images/10150-OpenCreateScript.png)
-
-1. Goto **<a target="_blank" href="https://portal.azure.com/">Azure Portal</a>**, and select SQL DB management blaze.  
+    - The "**dbo.Devices**" view is used by the web application to display a row for each device, along with their latest reading
+    </blockquote>
+1. Goto **<a target="_blank" href="https://portal.azure.com/">Azure Portal</a>**, and select SQL DB management blaze.  
 
 1. Select **Tool** at the top.
 
