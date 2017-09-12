@@ -101,14 +101,7 @@ In this exercise, you will use the Node-RED development environment pre-installe
 
 1. To open the Node-RED development environment on your IoT Gateway:
 
-    - In your browser, navigate to `http://your.nucs.ip.address` where `your.nucs.ip.address is` your gateway's IP Address.
-    - Click the "**Administration**" link
-    - Click the "**Launch**" button under the "**Node-RED**" icon.
-
-    ![Launch Node-RED](images/04010-LaunchNodeRed.png)
-
-    > **Note**: Accessing the Node-RED environment from the Administration page leaves the IoT Gateway links, etc. still visible at the top of the page and can cause some difficulty with the Node-RED environment.  If you prefer to access the Node-RED environment directly, you can do so by navigating to port **1880** on your gateway using **`http://your.nucs.ip.address:1880`** . Again, replace **`your.nucs.ip.address`** with your gateway's IP Address.
-
+    - In your browser, navigate to `http://your.nucs.ip.address:1880` where `your.nucs.ip.address is` your gateway's IP Address.
 1. The Node-RED environment will show the default "**Flow 1**" workflow that is responsible for retrieving your gateway's IP Address and displaying it on the LCD panel as well as reading the value from the rotary angle sensor, changing the background color of the RGB LCD based on the sensor value, and displaying it in the charts on the IoT Gateway web portal.  Leave this flow as is for now.
 
     ![Node-RED Environment](images/04020-NodeRedEnvironment.png)
