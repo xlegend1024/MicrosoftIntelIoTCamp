@@ -634,7 +634,7 @@ We'll start out creating the ***&lt;name&gt;sql*** Azure SQL Server, and the ***
 
     ![Document SQL](images/10085-DocumentSQL.png)
 
-1. Click on the icon for the "**Explorer**" panel, select the "**SQL Database Scripts\Create SQL Database Objects.sql**" file.  Copy **all** queries. 
+1. Click on the icon for the "**Explorer**" panel, select the "**SQL Database Scripts\Create SQL Database Objects.sql**" file.  Copy **all** queries. Or use <a target="_blank" href="https://raw.githubusercontent.com/xlegend1024/MicrosoftIntelIoTCamp/master/HOLs/SQL%20Database%20Scripts/Create%20SQL%20Database%20Objects.sql"> Create SQL DB Obj Link</a>
 
     ![SQL Tools Initialization](images/10147-SQLToolsInitialization.png)
 
@@ -738,7 +738,7 @@ Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytic
    SELECT    deviceID,    [timestamp] as [timestamp],    temperature
    INTO    sqldb
    FROM    iothub
-
+   ```
 1. Back in the browser, replace the default syntax in the query with the code you just copied, then click the "**Save**" button along the top.
 
     <blockquote>
@@ -764,7 +764,7 @@ Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytic
 
     ![Job Started](images/10400-JobStarted.png)
 
-1. At this point, we should have data being forwarded into our SQL Database.  We can verify that using Azure Portal **Query Editor (preview)**.  In Code, open the "**SQL Database Scripts\Query Measurement Data.sql**" file and copy the queries. Goto Azure portal, open SQL DB management blaze. 
+1. At this point, we should have data being forwarded into our SQL Database.  We can verify that using Azure Portal **Query Editor (preview)**.  In Code, open the "**SQL Database Scripts\Query Measurement Data.sql**" file and copy the queries. Goto Azure portal, open SQL DB management blaze. Or use <a target="_blank" href="https://raw.githubusercontent.com/xlegend1024/MicrosoftIntelIoTCamp/master/HOLs/SQL%20Database%20Scripts/Query%20Measurement%20Data.sql">SQL DB Query Link</a>
 
     ![Job Started](images/CreateSQLDB_2.png)
     
