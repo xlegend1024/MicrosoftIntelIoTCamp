@@ -734,20 +734,23 @@ Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytic
 
     > **Note**: Stream Analytics uses a SQL like syntax for its queries.  It provides a very powerful way to query the data streaming through the Azure IoT Hub as if it were data in a table.  Pretty cool!
 
-    ![Copy ASA Query](images/10370-CopyASAQuery.png)
+   ```text
+   -- SELECT ALL messages 
+   -- FROM the iot hub and put them
+   -- INTO the sql database
+   SELECT    deviceID,    [timestamp] as [timestamp],    temperature
+   INTO    sqldb
+   FROM    iothub
+   ```
 
 1. Back in the browser, replace the default syntax in the query with the code you just copied, then click the "**Save**" button along the top.
 
     <blockquote>
-      <<strong>Note</strong>: There are actually two queries here.<br/>
+      <<strong>Note</strong>: There are actually one query here.<br/>
       <ul>
-        <li>The first one queries all of the messages from the "<strong>iothub</strong>" intput and dumps them into the "<strong>sqldb</strong>" output.</li>
-        <li>The second query looks for messages coming in from the "<strong>iothub</strong>" input only where the "<strong>temperature</strong>" value is greater than <strong>40</strong> and then sends those messages into the "<strong>alerts</strong>" output.</li>
+        <li>The query all of the messages from the "<strong>iothub</strong>" intput and dumps them into the "<strong>sqldb</strong>" output.</li>
       </ul>
-      You may decide to change the <strong>40</strong> threshold value to something more appropriate for the temperatures your sensor is reporting.  You want something that is higher than the average value, but low enough that you can reach it by forcefully heating up your temp sensor.
     </blockquote>
-
-    ![Create Query](images/10380-CreateQuery.png)
 
 1. Close the "**Query**" blade, and back on the job blade, click the "**Error Policy** link along the left.  Change the policy to "**Drop**" and click the "**Save**" button along the top:
 
