@@ -738,7 +738,6 @@ Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytic
    SELECT    deviceID,    [timestamp] as [timestamp],    temperature
    INTO    sqldb
    FROM    iothub
-   ```
 
 1. Back in the browser, replace the default syntax in the query with the code you just copied, then click the "**Save**" button along the top.
 
