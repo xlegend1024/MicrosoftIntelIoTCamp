@@ -734,10 +734,7 @@ Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytic
 
     > **Note**: Stream Analytics uses a SQL like syntax for its queries.  It provides a very powerful way to query the data streaming through the Azure IoT Hub as if it were data in a table.  Pretty cool!
 
-   ```text
-   -- SELECT ALL messages 
-   -- FROM the iot hub and put them
-   -- INTO the sql database
+   ```
    SELECT    deviceID,    [timestamp] as [timestamp],    temperature
    INTO    sqldb
    FROM    iothub
