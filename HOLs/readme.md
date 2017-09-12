@@ -545,7 +545,7 @@ Publishing Temperature Sensor Data to the Azure IoT Hub
 
     ![Add azureiothub Node to the Flow](images/09090-AddAzureIoTHubNode.png)
 
-1. Next, double click on the "**Create Payload**" node. This function generates the actual JSON message that will be sent to the Azure IoT Hub. We will want to be able to retrieve the actual device id from that payload later, so we want to update it to use the device ID we created in our Azure IoT Hub Device Identity registry previously.
+1. Next, double click on the "**Create Payload**" node. This function generates the actual JSON message that will be sent to the Azure IoT Hub. We will want to be able to retrieve the actual device id from that payload later, so we want to update it to use the device ID we created in our Azure IoTadventurous Hub Device Identity registry previously.
 
     - Replace the default "**IntelIoTGateway**" name with the "***&lt;name&gt;IntelIoTGateway***" you created (It should match the "**`DeviceId=<name>IntelIoTGateway`**" device id value in the connection string you used above, then click "**OK**"
 
@@ -556,14 +556,6 @@ Publishing Temperature Sensor Data to the Azure IoT Hub
     ![Deploy the Changes](images/09120-DeployChanges.png)
 
 1. Remember that we had the Node-RED flow only getting temperatue values once every 10 seconds (10000ms).  It is recommended that you don't publish too much more frequently during this event.  It just helps to reduce the amount of traffic on the network.
-
-1. If you are feeling adventurous, trade iothubowner connection strings and device IDs with a neighbor in the lab and verify that you can monitor each other's devices.  For example:
-
-    ```bash
-    iothub-explorer monitor-events <your neighbors device id> --login "<Your neighbors 'iothubowner' SAS Policy Primary Connection String>"
-    ```
-
-1. One last comment, we are using the "**iothubowner**" connection string to monitor the events.  You could actually use a less privileged policy, like the "**service**" sas policy  we copied the connection string for earlier.  Go ahead and try monitoring events with the **IoT Hub "service" SAS Policy Primary Connection String** policy connection string (the one with "**`SharedAccessKeyName=service`**" in it) you pasted into the [myresources.txt](./myresources.txt) file.  It should work just fine because that SAS policy has permissions to read messages from the IoT Hub and that is all the permissions that `iothub-explorer monitor-events` needs.
 
 ___
 
