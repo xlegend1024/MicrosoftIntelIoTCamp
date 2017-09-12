@@ -730,7 +730,7 @@ Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytic
 
     ![Query](images/10360-Queries.png)
 
-1. Back in Visual Studio Code with the "**HOLs**" folder open, locate open the "**Stream Analytics\Stream Analytics Query.sql**" file and copy its contents to the clipboard, **OR** copy query from <a target="_blank" herf="https://raw.githubusercontent.com/xlegend1024/MicrosoftIntelIoTCamp/master/HOLs/Stream%20Analytics/Stream%20Analytics%20Query.sql">here</a>.
+1. Back in Visual Studio Code with the "**HOLs**" folder open, locate open the "**Stream Analytics\Stream Analytics Query.sql**" file and copy its contents to the clipboard, **OR** copy query from <a target="_blank" href="https://raw.githubusercontent.com/xlegend1024/MicrosoftIntelIoTCamp/master/HOLs/Stream%20Analytics/Stream%20Analytics%20Query.sql">here</a>.
 
     > **Note**: Stream Analytics uses a SQL like syntax for its queries.  It provides a very powerful way to query the data streaming through the Azure IoT Hub as if it were data in a table.  Pretty cool!
 
