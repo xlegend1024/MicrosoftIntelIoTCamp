@@ -1,13 +1,111 @@
-
-
-[{"id":"230a9a29.67aa16","type":"json","z":"46e83615.8cd758","name":"","x":1226,"y":514,"wires":[["3aa0d47a.9838fc","769401a3.c1eea"]]},{"id":"338411f3.72a1ce","type":"debug","z":"46e83615.8cd758","name":"","active":false,"console":"false","complete":"payload","x":1244,"y":452,"wires":[]},{"id":"769401a3.c1eea","type":"function","z":"46e83615.8cd758","name":"Get
-the Message","func":"msg.payload =
-msg.payload.message\nreturn
-msg;","outputs":1,"noerr":0,"x":1454,"y":611,"wires":[["e02e72ab.8a63f"]]},{"id":"3aa0d47a.9838fc","type":"switch","z":"46e83615.8cd758","name":"If
-Temp
-Alert","property":"payload.type","propertyType":"msg","rules":[{"t":"eq","v":"temp","vt":"str"}],"checkall":"false","outputs":1,"x":1200,"y":608,"wires":[["70f32337.f1ef1c"]]},{"id":"70f32337.f1ef1c","type":"function","z":"46e83615.8cd758","name":"Turn
-on Buzzer","func":"msg.payload = 1;\nreturn
-msg;","outputs":1,"noerr":0,"x":1210,"y":668,"wires":[["f7966fd3.68f8b"]]},{"id":"f7966fd3.68f8b","type":"UPM-Grove-Buzzer","z":"46e83615.8cd758","name":"","platform":"512","volume":"0.125","pin":"3","x":1208,"y":726,"wires":[]},{"id":"e02e72ab.8a63f","type":"upm-grove-rgb-lcd","z":"46e83615.8cd758","name":"Show
-the
-Message","platform":"512","r":255,"g":0,"b":0,"row":"1","column":0,"x":1462,"y":670,"wires":[]}]
-
+[
+    {
+        "id": "230a9a29.67aa16",
+        "type": "json",
+        "z": "46e83615.8cd758",
+        "name": "",
+        "x": 1226,
+        "y": 514,
+        "wires": [
+            [
+                "3aa0d47a.9838fc",
+                "769401a3.c1eea"
+            ]
+        ]
+    },
+    {
+        "id": "338411f3.72a1ce",
+        "type": "debug",
+        "z": "46e83615.8cd758",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "payload",
+        "x": 1244,
+        "y": 452,
+        "wires": []
+    },
+    {
+        "id": "769401a3.c1eea",
+        "type": "function",
+        "z": "46e83615.8cd758",
+        "name": "Getthe Message",
+        "func": "msg.payload =msg.payload.message\nreturnmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1454,
+        "y": 611,
+        "wires": [
+            [
+                "e02e72ab.8a63f"
+            ]
+        ]
+    },
+    {
+        "id": "3aa0d47a.9838fc",
+        "type": "switch",
+        "z": "46e83615.8cd758",
+        "name": "IfTempAlert",
+        "property": "payload.type",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "temp",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "outputs": 1,
+        "x": 1200,
+        "y": 608,
+        "wires": [
+            [
+                "70f32337.f1ef1c"
+            ]
+        ]
+    },
+    {
+        "id": "70f32337.f1ef1c",
+        "type": "function",
+        "z": "46e83615.8cd758",
+        "name": "Turnon Buzzer",
+        "func": "msg.payload =1;\nreturnmsg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1210,
+        "y": 668,
+        "wires": [
+            [
+                "f7966fd3.68f8b"
+            ]
+        ]
+    },
+    {
+        "id": "f7966fd3.68f8b",
+        "type": "UPM-Grove-Buzzer",
+        "z": "46e83615.8cd758",
+        "name": "",
+        "platform": "512",
+        "volume": "0.125",
+        "pin": "3",
+        "x": 1208,
+        "y": 726,
+        "wires": []
+    },
+    {
+        "id": "e02e72ab.8a63f",
+        "type": "upm-grove-rgb-lcd",
+        "z": "46e83615.8cd758",
+        "name": "ShowtheMessage",
+        "platform": "512",
+        "r": 255,
+        "g": 0,
+        "b": 0,
+        "row": "1",
+        "column": 0,
+        "x": 1462,
+        "y": 670,
+        "wires": []
+    }
+]
