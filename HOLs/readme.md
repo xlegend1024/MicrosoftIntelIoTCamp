@@ -634,7 +634,7 @@ We'll start out creating the ***&lt;name&gt;sql*** Azure SQL Server, and the ***
 
     ![Document SQL](images/10085-DocumentSQL.png)
 
-1. Click on the icon for the "**Explorer**" panel, select the "**SQL Database Scripts\Create SQL Database Objects.sql**" file.  Copy **all** queries. Or use <a target="_blank" href="https://raw.githubusercontent.com/xlegend1024/MicrosoftIntelIoTCamp/master/HOLs/SQL%20Database%20Scripts/Create%20SQL%20Database%20Objects.sql"> Create SQL DB Obj Link</a>
+1. Click on the icon for the "**Explorer**" panel, select the "**SQL Database Scripts\Create SQL Database Objects.sql**" file.  Copy **all** queries from <a target="_blank" href="https://raw.githubusercontent.com/xlegend1024/MicrosoftIntelIoTCamp/master/HOLs/SQL%20Database%20Scripts/Create%20SQL%20Database%20Objects.sql">here</a>.
 
     ![SQL Tools Initialization](images/10147-SQLToolsInitialization.png)
 
@@ -730,7 +730,7 @@ Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytic
 
     ![Query](images/10360-Queries.png)
 
-1. Back in Visual Studio Code with the "**HOLs**" folder open, locate open the "**Stream Analytics\Stream Analytics Query.sql**" file and copy its contents to the clipboard:
+1. Back in Visual Studio Code with the "**HOLs**" folder open, locate open the "**Stream Analytics\Stream Analytics Query.sql**" file and copy its contents to the clipboard, **OR** copy query from <a target="_blank" herf="https://raw.githubusercontent.com/xlegend1024/MicrosoftIntelIoTCamp/master/HOLs/Stream%20Analytics/Stream%20Analytics%20Query.sql">here</a>.
 
     > **Note**: Stream Analytics uses a SQL like syntax for its queries.  It provides a very powerful way to query the data streaming through the Azure IoT Hub as if it were data in a table.  Pretty cool!
 
@@ -764,7 +764,7 @@ Great, now we have all the pieces that the ***&lt;name&gt;job*** Stream Analytic
 
     ![Job Started](images/10400-JobStarted.png)
 
-1. At this point, we should have data being forwarded into our SQL Database.  We can verify that using Azure Portal **Query Editor (preview)**.  In Code, open the "**SQL Database Scripts\Query Measurement Data.sql**" file and copy the queries. Goto Azure portal, open SQL DB management blaze. Or use <a target="_blank" href="https://raw.githubusercontent.com/xlegend1024/MicrosoftIntelIoTCamp/master/HOLs/SQL%20Database%20Scripts/Query%20Measurement%20Data.sql">SQL DB Query Link</a>
+1. At this point, we should have data being forwarded into our SQL Database.  We can verify that using Azure Portal **Query Editor (preview)**.  In Code, open the "**SQL Database Scripts\Query Measurement Data.sql**" file and copy the queries. Goto Azure portal, open SQL DB management blaze. Or copy from <a target="_blank" href="https://raw.githubusercontent.com/xlegend1024/MicrosoftIntelIoTCamp/master/HOLs/SQL%20Database%20Scripts/Query%20Measurement%20Data.sql">here</a>.
 
     ![Job Started](images/CreateSQLDB_2.png)
     
