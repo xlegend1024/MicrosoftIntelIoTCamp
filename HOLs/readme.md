@@ -469,7 +469,7 @@ In this task, we'll create the ***&lt;name&gt;iot*** Azure IoT Hub and since it'
 
         `streamanalytics`
 
-    - Click the "**Save**" button at the top of the "**Properties**" blade to save the new consumer group, the close the "**Properties**" blade.
+    - Click the "**Save**" button at the top of the "**Properties**" blade to save the new consumer group, and close the "**Properties**" blade.
 
     ![Create streamanalytics Consumer Group](images/07100-StreamAnalyticsConsumerGroup.png)
 
