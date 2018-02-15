@@ -165,7 +165,7 @@ We will create Node-RED flow to get data from temperature sensor and display it 
 
 1. From the "**UPM_Sensors**" group in the nodes panel, drag a "**Grove Temperature Sensor**" into the visual editor for "**Flow 3**". Then double click on the new node, and set the properties as follows.  Click the "**OK**" button to save the changes:
 
-    > **Note**: The interval of 10000ms really means the temperature will only update once everyt 10 seconds.  You can speed that up by lowering the number to 5000ms or even 1000ms, but later when we are publishing data to Azure it might be better to publish less frequently just to help reduce network traffic and resource utilization in Azure.
+    > **Note**: The interval of 10000ms really means the temperature will only update once every 10 seconds.  You can speed that up by lowering the number to 5000ms or even 1000ms, but later when we are publishing data to Azure it might be better to publish less frequently just to help reduce network traffic and resource utilization in Azure.
 
     - Name - **Leave Blank**
     - Platform - **Firmata**
@@ -640,7 +640,7 @@ The "**Create SQL Database Objects.sql**" script creates the following objects:
     - The "**dbo.RecentMeasurements**" view is used by the web application to display the 20 most recent messages.
     - The "**dbo.Devices**" view is used by the web application to display a row for each device, along with their latest reading
     </blockquote>
-1. Goto **<a target="_blank" href="https://portal.azure.com/">Azure Portal</a>**, and select SQL DB management blaze.  
+1. Goto **<a target="_blank" href="https://portal.azure.com/">Azure Portal</a>**, and select SQL DB management blade.  
 
 1. Select **Tool** at the top.
 
@@ -898,7 +898,7 @@ The reason for this is that we are going to be using the Node.js Debugging and G
 
 ### Deploying the Web App to Azure ###
 
-The last step is to get this web application running in Azure, not locally.  Earlier, when we configured the Web Application we set it up to deploy from a git repository.  To deploy we can simply push our web app code via git up to the Web App's repo.  Visual Studio Code makes that simple to do!.
+The last step is to get this web application running in Azure, not locally.  Earlier, when we configured the Web Application we set it up to deploy from a git repository.  To deploy we can simply push our web app code via git up to the Web App's repo.  Visual Studio Code makes that simple to do!
 
 1. In Visual Studio Code, click the "**git**" icon to open the "**git**" panel, and then click the "**Initialize git repository**" button.
 
