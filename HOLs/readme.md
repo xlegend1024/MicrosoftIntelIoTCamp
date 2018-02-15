@@ -640,7 +640,7 @@ The "**Create SQL Database Objects.sql**" script creates the following objects:
     - The "**dbo.RecentMeasurements**" view is used by the web application to display the 20 most recent messages.
     - The "**dbo.Devices**" view is used by the web application to display a row for each device, along with their latest reading
     </blockquote>
-1. Goto **<a target="_blank" href="https://portal.azure.com/">Azure Portal</a>**, and select SQL DB management blaze.  
+1. Goto **<a target="_blank" href="https://portal.azure.com/">Azure Portal</a>**, and select SQL DB management blade.  
 
 1. Select **Tool** at the top.
 
